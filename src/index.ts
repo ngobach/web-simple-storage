@@ -1,3 +1,7 @@
-export default function hello() {
-  console.log('Web Simple Storage');
-}
+import * as backends from './backends';
+import * as codings from './codings';
+
+export {
+  backends,
+  codings,
+};
