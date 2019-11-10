@@ -8,12 +8,10 @@ abstract class Backend {
     this.type = type;
   }
 
-  protected abstract getItem(key: string): string;
+  protected abstract getItem(key: string): string | null;
   protected abstract removeItem(key: string): void;
   protected abstract setItem(key: string, data: string): void;
   protected abstract listKeys(): string[];
-
-  
 }
 
 export default Backend;
