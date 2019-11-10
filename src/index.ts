@@ -1,3 +1,3 @@
 export default function hello() {
-  console.log("Web Simple Storage");
+  console.log('Web Simple Storage');
 }
