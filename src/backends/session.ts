@@ -6,3 +6,5 @@ class SessionBackend extends CommonBackend {
     super(BackendTypes.LOCAL);
   }
 }
+
+export default SessionBackend;

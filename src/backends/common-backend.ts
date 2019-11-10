@@ -14,7 +14,7 @@ class CommonBackend extends Backend {
     } else if (type === BackendTypes.SESSION) {
       this.s = sessionStorage;
     } else {
-      throw new Error(`Invalid type for CommonStorage: ${BackendTypes[type]}`);
+      throw new Error(`Invalid type for CommonBackend: ${BackendTypes[type]}`);
     }
   }
 
@@ -38,4 +38,4 @@ class CommonBackend extends Backend {
   }
 }
 
-export default CommonStorage;
+export default CommonBackend;

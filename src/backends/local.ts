@@ -6,3 +6,5 @@ class LocalBackend extends CommonBackend {
     super(BackendTypes.LOCAL);
   }
 }
+
+export default LocalBackend;
