@@ -1,4 +1,3 @@
-
 import BackendType from './backend-types';
 
 abstract class Backend {
