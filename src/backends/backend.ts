@@ -7,10 +7,10 @@ abstract class Backend {
     this.type = type;
   }
 
-  protected abstract getItem(key: string): string | null;
-  protected abstract removeItem(key: string): void;
-  protected abstract setItem(key: string, data: string): void;
-  protected abstract listKeys(): string[];
+  public abstract getItem(key: string): string | null;
+  public abstract removeItem(key: string): void;
+  public abstract setItem(key: string, data: string): void;
+  public abstract listKeys(): string[];
 }
 
 export default Backend;
