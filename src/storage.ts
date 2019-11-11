@@ -14,9 +14,12 @@ class SimpleStorage<T, K extends keyof T & string> {
     this.backend.setItem(encodedKey, encodedEntry);
   }
 
-  public getEntry(key: K): Entry<T[K]> {
+  public getEntry(key: K): Entry<T[K]> | null {
     this.checkEntry(key);
     const encodedKey = this.coding.encode(key);
+    if (this.backend.getItem(encodedKey) === null) {
+      return null;
+    }
     const stringEntry = this.coding.decode(this.backend.getItem(encodedKey));
     return Entry.parse<T[K]>(stringEntry);
   }
@@ -33,7 +36,7 @@ class SimpleStorage<T, K extends keyof T & string> {
     const encodedKey = this.coding.encode(key);
     const stringEntry = this.coding.decode(this.backend.getItem(encodedKey));
     const entry = Entry.parse<T[K]>(stringEntry);
-    if (entry.expireAt >= Date.now()) {
+    if (entry.expireAt <= Date.now()) {
       this.backend.removeItem(encodedKey);
     }
   }
