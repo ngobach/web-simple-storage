@@ -9,6 +9,7 @@
     "dist"
   ],
   "devDependencies": {
+    "parcel-bundler": "^1.12.4",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
   },
@@ -18,7 +19,8 @@
     "build:esm": "tsc -m es6",
     "build:umd": "tsc -m umd",
     "clean": "rm -rf dist",
-    "lint": "tslint -p ."
+    "lint": "tslint -p .",
+    "example:hello": "cd examples/hello && parcel serve index.html"
   },
   "dependencies": {
     "crypto-js": "^3.1.9-1"
