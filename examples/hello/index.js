@@ -1,7 +1,11 @@
-import { backends, codings, Storage, Entry } from '../../dist';
+import Vue from 'vue';
+import App from './app.vue';
 
-const be = new backends.LocalBackend();
-const cd = new codings.RawCoding();
-const s = new Storage(be, cd);
-s.putEntry('ahihi', new Entry('do ngoc', Date.now() + 100000));
-alert(s.getEntry('ahihi').value);
+const root = document.getElementById('app');
+
+new Vue({
+  el: root,
+  render(ce) {
+    return ce(App);
+  },
+})
