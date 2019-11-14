@@ -33,7 +33,8 @@ class CommonBackend extends Backend {
     return Array(length)
       .fill(null)
       .map((_, idx) => this.s.key(idx))
-      .filter((k) => k.startsWith(PROTECTED_NAMESPACE));
+      .filter((k) => k.startsWith(PROTECTED_NAMESPACE))
+      .map((s) => s.substr(PROTECTED_NAMESPACE.length));
   }
 
   public removeItem(k: string): void {
