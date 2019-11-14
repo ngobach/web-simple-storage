@@ -3,6 +3,7 @@ import { Coding } from './codings';
 import Entry from './entry';
 
 class SimpleStorage<T, K extends keyof T & string> {
+
   constructor(
     private backend: Backend,
     private coding: Coding,
@@ -22,6 +23,10 @@ class SimpleStorage<T, K extends keyof T & string> {
     }
     const stringEntry = this.coding.decode(this.backend.getItem(encodedKey));
     return Entry.parse<T[K]>(stringEntry);
+  }
+
+  public hasEntry(key: K): boolean {
+    return this.getEntry(key) !== null;
   }
 
   public removeEntry(key: K): boolean {

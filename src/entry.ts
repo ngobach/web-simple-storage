@@ -11,6 +11,7 @@ class Entry<T = string> {
 
   public value: T;
   public expireAt: number;
+
   constructor(value: T, expireAt: number) {
     this.value = value;
     this.expireAt = expireAt;
