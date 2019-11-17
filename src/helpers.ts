@@ -5,8 +5,13 @@ import Entry from './entry';
 import Storage from './storage';
 import makeProxy from './storage-proxy';
 
-function makeStorage<T>(backend: backends.Backend, coding: codings.Coding, bait?: T): Storage<T, keyof T & string> {
-  return new Storage(backend, coding);
+function makeStorage<T>(
+  backend: backends.Backend,
+  coding: codings.Coding,
+  namespace: string,
+  bait?: T,
+): Storage<T, keyof T & string> {
+  return new Storage(backend, coding, namespace);
 }
 
 function makeEntry<T>(value: T, expirition: number = Date.now() + DURATION_100_YEARS) {
