@@ -16,8 +16,8 @@ console.log($.a.expiration);
 $.a.value = "dongok";
 console.log($.a.value);
 console.log($.a.expiration);
-// $.a.expiration = 0;
-// console.log($.a);
+$.a.expiration = 0;
+console.log($.a);
 
 export default {
   name: 'App',

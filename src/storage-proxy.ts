@@ -2,13 +2,13 @@ import { DURATION_100_YEARS } from './consts';
 import Entry from './entry';
 import Storage from './storage';
 
-type ProxiedObject<T, K extends keyof T & string> = {
-  [k in K]: Entry<T[k]>;
+type ProxiedObject<T> = {
+  [k in keyof T]?: Entry<T[k]>;
 };
 
-function makeProxy<T, K extends keyof T & string>(inner: Storage<T, K>) {
+function makeProxy<T>(inner: Storage<T>) {
   const handler = {
-    get(obj: {}, prop: K): Entry<T[K]> {
+    get(obj: {}, prop: keyof T): Entry<T[typeof prop]> {
       const entry = inner.getEntry(prop);
       if (entry !== null) {
         entry.setCallback((e) => {
@@ -17,13 +17,13 @@ function makeProxy<T, K extends keyof T & string>(inner: Storage<T, K>) {
       }
       return entry;
     },
-    set(obj: {}, prop: K, entry: Entry<T[typeof prop]>, receiver: any): boolean {
+    set(obj: {}, prop: keyof T, entry: Entry<T[typeof prop]>, receiver: any): boolean {
       inner.putEntry(prop, entry);
       return true;
     },
   };
 
-  return new Proxy({}, handler) as ProxiedObject<T, K>;
+  return new Proxy({}, handler) as ProxiedObject<T>;
 }
 
 export default makeProxy;

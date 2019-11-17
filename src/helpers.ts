@@ -10,7 +10,7 @@ function makeStorage<T>(
   coding: codings.Coding,
   namespace: string,
   bait?: T,
-): Storage<T, keyof T & string> {
+): Storage<T> {
   return new Storage(backend, coding, namespace);
 }
 
