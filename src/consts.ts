@@ -1,0 +1,1 @@
+export const DURATION_100_YEARS = 100 * 365.25 * 86400 * 1000;

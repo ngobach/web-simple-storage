@@ -41,7 +41,7 @@ class SimpleStorage<T, K extends keyof T & string> {
     const encodedKey = this.coding.encode(key);
     const stringEntry = this.coding.decode(this.backend.getItem(encodedKey));
     const entry = Entry.parse<T[K]>(stringEntry);
-    if (entry.expireAt <= Date.now()) {
+    if (entry.expiration <= Date.now()) {
       this.backend.removeItem(encodedKey);
     }
   }
