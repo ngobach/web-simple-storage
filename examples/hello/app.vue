@@ -6,8 +6,8 @@
 import { backends, codings, Storage, Entry, makeProxy } from '../../dist';
 
 const be = new backends.LocalBackend();
-const cd = new codings.RawCoding();
-const s = new Storage(be, cd);
+const cd = new codings.AesCoding('Ahihi');
+const s = new Storage(be, cd, 'zxc');
 const $ = makeProxy(s);
 
 $.a = new Entry("ahihi");
