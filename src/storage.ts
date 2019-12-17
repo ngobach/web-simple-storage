@@ -35,13 +35,31 @@ class SimpleStorage<T> {
     return hasEntry;
   }
 
-  private checkEntry(key: keyof T): void {
+  public listKeys(): string[] {
+    const keyPrefix = `${this.namespace}:`;
+    return this.backend.listKeys()
+      .map((k) => this.coding.decode(k))
+      .filter((k) => k.startsWith(keyPrefix))
+      .map((k) => k.substr(keyPrefix.length))
+      .filter((k) => this.checkEntry(k as keyof T));
+  }
+
+  private checkEntry(key: keyof T): typeof key | null {
     const encodedKey = this.getRawKeyName(key);
-    const stringEntry = this.coding.decode(this.backend.getItem(encodedKey));
+    const encodedValue = this.backend.getItem(encodedKey);
+    if (!encodedValue) {
+      return null;
+    }
+    const stringEntry = this.coding.decode(encodedValue);
     const entry = Entry.parse<T[typeof key]>(stringEntry);
+    if (entry === null) {
+      return null;
+    }
     if (entry.expiration <= Date.now()) {
       this.backend.removeItem(encodedKey);
+      return null;
     }
+    return key;
   }
 
   private getRawKeyName(key: keyof T): string {

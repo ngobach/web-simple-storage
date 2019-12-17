@@ -17,7 +17,11 @@ function makeProxy<T>(inner: Storage<T>) {
       }
       return entry;
     },
-    set(obj: {}, prop: keyof T, entry: Entry<T[typeof prop]>, receiver: any): boolean {
+    set(obj: {}, prop: keyof T, entry: Entry<T[typeof prop]> | any, receiver: any): boolean {
+      if (!(entry instanceof Entry)) {
+        entry = new Entry(entry, Date.now() + DURATION_100_YEARS);
+      }
+      entry.setCallback((e) => inner.putEntry(prop, e));
       inner.putEntry(prop, entry);
       return true;
     },
