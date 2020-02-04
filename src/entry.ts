@@ -41,6 +41,14 @@ class Entry<T = string> {
     }
   }
 
+  public expireAfter(ttl: number) {
+    this.expiration = Date.now() + ttl;
+  }
+
+  public neverExpire() {
+    this.expireAfter(DURATION_100_YEARS);
+  }
+
   public setCallback(cb: CB<T>) {
     this.onChanged = cb;
   }

@@ -1,6 +1,6 @@
+import AesCoding from './aes';
 import Coding from './coding';
 import RawCoding from './raw';
-import AesCoding from './aes';
 
 export {
   Coding,

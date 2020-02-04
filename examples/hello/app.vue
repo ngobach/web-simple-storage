@@ -1,5 +1,5 @@
 <template>
-  <div>Hello from Vue</div>
+  <div>Hello from {{x}}</div>
 </template>
 
 <script>
@@ -9,21 +9,13 @@ const be = new backends.LocalBackend();
 const cd = new codings.AesCoding('Ahihi');
 const s = new Storage(be, cd, 'zxc');
 const $ = makeProxy(s);
-
-$.a = new Entry("ahihi");
-console.log($.a.value);
-console.log($.a.expiration);
-$.a.value = "dongok";
-console.log($.a.value);
-console.log($.a.expiration);
-$.a.expiration = 0;
-console.log($.a);
+$.zxc = new Entry("world");
 
 export default {
   name: 'App',
   computed: {
-    storage() {
-      return s;
+    x() {
+      return $.zxc.value;
     },
   },
 }
