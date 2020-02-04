@@ -25,3 +25,17 @@ The library was designed with following feature:
   Also every storage is name-spaced so even when two app using this library the chance of confliction happened is relatively small.
 - **Secure** With the support of secure coding algorithm like AES, user storaged data is still safe even when attacker have user raw storage data, like localStorage. This is a real thread when recently there were more and more accident about poisoned package published on NPM.
 - **Tiny** Data is compressed before being put into backend so it could save you some bytes.
+
+Running example code
+----
+
+This repository includes an example project which could be started by running:
+
+```sh
+yarn example:hello
+```
+
+Documentation
+----
+
+Please see the [document page](./docs/README.md)
